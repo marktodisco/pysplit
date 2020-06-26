@@ -71,4 +71,4 @@ if __name__ == '__main__':
     
     recon_src = './data/train75_test25_rs1234/'
     recon_dst = './data/train75_test25_rs1234/X_train_recon.npy'
-    unsplit(recon_src, 'X_train_*.npy', recon_dst)
+    unsplit(recon_src, 'X_train*.split', recon_dst)
