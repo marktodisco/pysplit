@@ -1,5 +1,2 @@
-from pysplitter import pysplitter
-# from pysplitter.pysplitter import split
-# from pysplitter.pysplitter import unsplit
-
-# from pysplitter import split
+from _pysplitter import *
+# __all__ = ['split', 'unsplit']

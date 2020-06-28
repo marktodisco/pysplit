@@ -1,11 +1,10 @@
-class __MyImports__:
-    import os
-    from glob import glob
+import os
+from glob import glob
 
 
 def _generate_file_name(name, ext='split', pad=4):
     """
-    Yield new file sting.
+    Yield new file string.
     
     Parameters
     ----------
@@ -19,8 +18,9 @@ def _generate_file_name(name, ext='split', pad=4):
     
     Returns
     -------
-    iterable
+    generator
     """
+
     i = 0
     while True:
         file_name = f'{name}{i:0{pad}d}.{ext}'
@@ -40,8 +40,8 @@ def split(src, dst, size=100000000):
     Returns
     -------
     None
-
     """
+
     name = dst.split('/')[-1]
     dst_dir = dst.replace(name, '')
     file_name = _generate_file_name(name)
@@ -51,20 +51,20 @@ def split(src, dst, size=100000000):
             chunk = infile.read(100000000)
             if chunk == b'':
                 break
-            dst = __MyImports__.os.path.join(dst_dir, next(file_name))
+            dst = os.path.join(dst_dir, next(file_name))
             with open(dst, 'wb') as outfile:
                 outfile.write(chunk)
                 print(f'Data written to {dst}')
 
 
 def unsplit(src_dir, pattern: str, dst):
-    src_dir = __MyImports__.os.path.abspath(src_dir)
-    assert __MyImports__.os.path.exists(src_dir), f'Path does not exist: {src_dir}'
+    src_dir = os.path.abspath(src_dir)
+    assert os.path.exists(src_dir), f'Path does not exist: {src_dir}'
 
     assert '*' in pattern, f'Pattern does not contain a wildcard: {pattern}'
-    search_path = __MyImports__.os.path.join(src_dir, pattern)
+    search_path = os.path.join(src_dir, pattern)
 
-    file_list = __MyImports__.glob(search_path)
+    file_list = glob(search_path)
     assert len(file_list) > 0, \
         f'No files were found at given path: {search_path}'
 
@@ -75,7 +75,7 @@ def unsplit(src_dir, pattern: str, dst):
                 dst_file.write(data)
 
 
-__all__ = ['split', 'unsplit']
+__all__ = ['split', 'unsplit', '_generate_file_name']
 
 if __name__ == '__main__':
     src = './data/train75_test25_rs1234/X_train.npy'
