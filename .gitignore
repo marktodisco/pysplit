@@ -134,3 +134,4 @@ data/
 .vscode/
 .pycharm/
 .idea/
+clean.bat
