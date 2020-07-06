@@ -135,3 +135,4 @@ data/
 .pycharm/
 .idea/
 clean.bat
+clean.cmd 
