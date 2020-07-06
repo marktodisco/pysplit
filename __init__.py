@@ -1,2 +1,2 @@
-from _pysplitter import *
-# __all__ = ['split', 'unsplit']
+from pysplitter import *
+__version__ = '1.0.0'
