@@ -1,2 +1,2 @@
-from pysplitter import *
-__version__ = '1.0.0'
+from pysplitter.pysplitter import *
+__version__ = '0.0.7'

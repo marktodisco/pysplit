@@ -1,1 +1,1 @@
-from _pysplitter import *
+from pysplitter._pysplitter import *

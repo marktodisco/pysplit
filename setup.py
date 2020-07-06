@@ -7,7 +7,7 @@ with open('README.md', 'r') as fp:
     
 setup(
     name='pysplitter',
-    version='1.0.0',
+    version='0.0.7',
     author='Mark Todisco',
     description='A python package that splits large files into smaller chunks.',
     long_description=long_description,
