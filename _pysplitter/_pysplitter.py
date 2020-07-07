@@ -71,9 +71,9 @@ def split(src, dst_dir=None, size=100000000):
 
     print(f'{file_counter} file(s) written.')
 
-from pdb import set_trace
 
 def unsplit(search_pattern, dst, validate=False, orig_src=None):
+
     src_dir = os.path.realpath(os.path.dirname(search_pattern))
     if not os.path.exists(src_dir):
         raise NotADirectoryError(src_dir)
@@ -94,8 +94,6 @@ def unsplit(search_pattern, dst, validate=False, orig_src=None):
         dst_name += '(unsplit)' + dst_ext
         dst = os.path.realpath(os.path.join(dst, dst_name))
 
-    # set_trace()
-
     with open(dst, 'wb') as dst_file:
         for src in file_list:
             with open(src, 'rb') as src_file:
@@ -107,14 +105,17 @@ def unsplit(search_pattern, dst, validate=False, orig_src=None):
         no_loss = filecmp.cmp(dst, orig_src)
         print(f'File reconstructed without loss: {no_loss}')
 
+    print(f'File written to {dst}')
+    return dst
+
 
 __all__ = ['split', 'unsplit']
 
 if __name__ == '__main__':
-    src = './data/X_train.npy'
-    dst_dir = './data'
+    src = 'C:/Users/markt/OneDrive/School/SDASL/Eglin_Summer_2020/EglinSummer2020/data/20200706/large/dataset.npz'
+    dst_dir = 'C:/Users/markt/OneDrive/School/SDASL/Eglin_Summer_2020/EglinSummer2020/data/20200706/'
     split(src, dst_dir)
 
-    recon_src = './data/X_train*.split'
-    recon_dst = './data'
+    recon_src = 'C:/Users/markt/OneDrive/School/SDASL/Eglin_Summer_2020/EglinSummer2020/data/20200706/dataset*.split'
+    recon_dst = dst_dir
     unsplit(recon_src, recon_dst, validate=True, orig_src=src)
