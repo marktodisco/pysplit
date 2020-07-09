@@ -118,12 +118,3 @@ def unsplit(search_pattern, dst, validate=False, orig_src=None):
 
 
 __all__ = ['split', 'unsplit']
-
-if __name__ == '__main__':
-    src = 'C:/Users/markt/OneDrive/School/SDASL/Eglin_Summer_2020/EglinSummer2020/data/20200706/large/dataset.npz'
-    dst_dir = 'C:/Users/markt/OneDrive/School/SDASL/Eglin_Summer_2020/EglinSummer2020/data/20200706/'
-    split(src, dst_dir)
-
-    recon_src = 'C:/Users/markt/OneDrive/School/SDASL/Eglin_Summer_2020/EglinSummer2020/data/20200706/dataset*.split'
-    recon_dst = dst_dir
-    unsplit(recon_src, recon_dst, validate=True, orig_src=src)
