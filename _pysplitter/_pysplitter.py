@@ -73,6 +73,15 @@ def split(src, dst_dir=None, size=100000000):
 
 
 def unsplit(search_pattern, dst, validate=False, orig_src=None):
+    """
+
+    Parameters
+    ----------
+    search_pattern
+    dst
+    validate
+    orig_src
+    """
 
     src_dir = os.path.realpath(os.path.dirname(search_pattern))
     if not os.path.exists(src_dir):
@@ -88,11 +97,11 @@ def unsplit(search_pattern, dst, validate=False, orig_src=None):
         raise FileNotFoundError(f'No files were found at {search_pattern}')
 
     # Extrapolate destination file name
-    if not os.path.isfile(dst) and os.path.isdir(dst):
-        dst_name = os.path.splitext(os.path.basename(search_pattern))[0].replace('*', '')
-        dst_ext = os.path.splitext(os.path.splitext(os.path.basename(file_list[0]))[0])[-1]
-        dst_name += '(unsplit)' + dst_ext
-        dst = os.path.realpath(os.path.join(dst, dst_name))
+    # if not os.path.isfile(dst) and os.path.isdir(dst):
+    #     dst_name = os.path.splitext(os.path.basename(search_pattern))[0].replace('*', '')
+    #     dst_ext = os.path.splitext(os.path.splitext(os.path.basename(file_list[0]))[0])[-1]
+    #     dst_name += '(unsplit)' + dst_ext
+    #     dst = os.path.realpath(os.path.join(dst, dst_name))
 
     with open(dst, 'wb') as dst_file:
         for src in file_list:
@@ -106,7 +115,6 @@ def unsplit(search_pattern, dst, validate=False, orig_src=None):
         print(f'File reconstructed without loss: {no_loss}')
 
     print(f'File written to {dst}')
-    return dst
 
 
 __all__ = ['split', 'unsplit']
